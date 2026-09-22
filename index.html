@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="每日盤後解析十二大權值股對臺灣加權股價指數的影響">
+  <title>台股加權點數計算機</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand"><span class="logo">12</span><span>台股觀測<small>TAIEX / AFTER CLOSE</small></span></div>
+      <span class="pill">每日盤後 · 收盤價計算</span>
+    </header>
+    <section class="heading">
+      <div><p class="eyebrow">AFTER THE BELL</p><h1>台股加權點數計算機</h1><p>每日盤後解析十二大權值股對加權指數的影響</p></div>
+      <a class="button" href="https://github.com/a0979989987-coder/taiwan-stock-weight-contribution/actions/workflows/update-and-deploy.yml" target="_blank" rel="noreferrer">管理者手動更新 ↗</a>
+    </section>
+    <section class="datebar">
+      <div><strong id="report-title">載入盤後資料…</strong><span id="latest-label">資料以證交所正式收盤報表為準</span></div>
+      <div class="history"><label for="history-date">歷史日期</label><select id="history-date" disabled><option>載入中</option></select></div>
+    </section>
+    <div id="notice" class="notice" hidden></div>
+    <section class="metrics summary">
+      <article><p>加權指數收盤點數</p><strong id="index-close">—</strong><p>前一交易日 <span id="index-previous">—</span></p></article>
+      <article><p>今日大盤漲跌</p><strong id="index-change">—</strong><p id="index-pct">漲跌幅 —</p></article>
+      <article class="primary"><p>十二大權值股淨貢獻 <span>估算</span></p><strong id="net-points">—</strong><p>十二檔收盤資料完整後計算</p></article>
+    </section>
+    <section class="contribution-strip">
+      <div><span>上漲貢獻合計</span><b id="positive-points">—</b></div>
+      <div><span>下跌拖累合計</span><b id="negative-points">—</b></div>
+      <div><span>當日加權指數實際漲跌</span><b id="actual-points">—</b></div>
+    </section>
+    <section class="board">
+      <div class="board-title"><div><h2>十二大權值股</h2><span>上漲紅色 · 下跌綠色 · 平盤灰色</span></div>
+        <div class="sort-controls"><label for="sort">排序</label><select id="sort"><option value="weight">權重</option><option value="points">貢獻點數</option><option value="changePct">漲跌幅</option></select><button id="direction" type="button">由高到低 ↓</button></div>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>排名 / 股票</th><th>代號</th><th class="numeric">收盤價</th><th class="numeric">前日收盤價</th><th class="numeric">漲跌</th><th class="numeric">漲跌幅</th><th class="numeric">權重</th><th class="numeric">貢獻點數</th></tr></thead><tbody id="stocks"></tbody></table></div>
+      <div id="loading" class="loading">正在讀取盤後歷史資料…</div>
+    </section>
+    <footer>
+      <p id="meta">前一交易日：—　權重資料日期：—</p>
+      <p id="saved">資料更新時間：—（台北時間）</p>
+      <details open><summary>盤後更新與歷史紀錄</summary><p>網站只讀取已儲存的盤後結果，不抓盤中行情。GitHub Actions 在交易日盤後檢查證交所正式報表；十二檔與前一交易日資料全部驗證通過後，才按日期新增歷史紀錄。休市、延遲或缺漏時保留最近完整結果。</p></details>
+      <details><summary>估算方式與資料來源</summary><p>個股貢獻點數 ＝ 前一交易日加權指數收盤 × 個股公布權重 ×（當日收盤價 ÷ 前一交易日實際收盤價 − 1）。合計先加總未四捨五入數值，再顯示小數兩位。</p><p>權重採期交所最新公布資料，通常每月底更新。除權息、股本及指數基值調整可能造成估算差異，本工具並非官方精確歸因。</p><p><a href="https://www.taifex.com.tw/cht/9/futuresQADetail" target="_blank" rel="noreferrer">期交所・權重資料 ↗</a>　<a href="https://www.twse.com.tw/zh/trading/historical/mi-index.html" target="_blank" rel="noreferrer">證交所・每日收盤行情 ↗</a></p></details>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
