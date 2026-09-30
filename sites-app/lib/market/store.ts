@@ -16,7 +16,7 @@ async function save(report:DailyReport,replaceExisting=false){
  // Never write partial data or replace historical dates. A user-triggered refresh may replace only today's validated snapshot.
  await db().prepare('INSERT INTO daily_reports (date,previous_date,payload,created_at) VALUES (?,?,?,?) ON CONFLICT(date) DO UPDATE SET previous_date=excluded.previous_date,payload=excluded.payload,created_at=excluded.created_at WHERE ? = 1').bind(report.date,report.previousDate,JSON.stringify(report),report.savedAt,replaceExisting?1:0).run();
 }
-export async function updateToday(options:{force?:boolean}={}){
+export async function updateToday(options:{force?:boolean;minIntervalMs?:number}={}){
  const force=options.force===true;
  const clock=taipeiClock(),date=clock.date,database=db();
  if(clock.weekend)return {status:'closed',message:'週末不建立交易紀錄，顯示最近已儲存的盤後資料。'};
@@ -24,7 +24,7 @@ export async function updateToday(options:{force?:boolean}={}){
  const existing=await database.prepare('SELECT date FROM daily_reports WHERE date=?').bind(date).first();
  if(existing&&!force)return {status:'complete',message:'今日十二檔完整盤後資料已儲存，無須重複抓取。'};
  const now=Date.now();
- const lock=await database.prepare("INSERT INTO update_attempts (date,attempted_at,status,message,lease_until) VALUES (?,?,'running','正在檢查完整盤後報表',?) ON CONFLICT(date) DO UPDATE SET attempted_at=excluded.attempted_at,status=excluded.status,message=excluded.message,lease_until=excluded.lease_until WHERE update_attempts.lease_until < ? OR (? = 1 AND update_attempts.status != 'running') RETURNING date").bind(date,new Date(now).toISOString(),now+120000,now,force?1:0).first();
+ const lock=await database.prepare("INSERT INTO update_attempts (date,attempted_at,status,message,lease_until) VALUES (?,?,'running','正在檢查完整盤後報表',?) ON CONFLICT(date) DO UPDATE SET attempted_at=excluded.attempted_at,status=excluded.status,message=excluded.message,lease_until=excluded.lease_until WHERE (update_attempts.lease_until < ? OR (? = 1 AND update_attempts.status != 'running')) AND update_attempts.attempted_at <= ? RETURNING date").bind(date,new Date(now).toISOString(),now+120000,now,force?1:0,new Date(now-(options.minIntervalMs??0)).toISOString()).first();
  if(!lock)return {status:'cooldown',message:'剛剛已檢查資料，請稍後再試（最多兩分鐘）。'};
  let status='pending',message='';
  try {
