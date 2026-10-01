@@ -3,9 +3,9 @@
  const groups=[['us','美國股市'],['asia','亞洲市場'],['indicators','市場指標'],['commodities','商品市場'],['fx','外匯市場'],['yields','美國公債殖利率'],['crypto','加密貨幣']];
  const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  let reports=[],active=null,loaded=false;
- const number=(v,d=2)=>v==null?'—':Number(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+ const number=(v,d=2)=>v==null?'—':(Math.abs(v)<.5*Math.pow(10,-d)?0:Number(v)).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
  const sign=v=>v>0?'+':'';
- const tone=v=>v==null||Math.abs(v)<1e-8?'flat':v>0?'up':'down';
+ const tone=v=>v==null||Math.abs(v)<.005?'flat':v>0?'up':'down';
  function message(text){el('morning-notice').hidden=false;el('morning-notice').textContent=text;}
  function render(){
   if(!active)return;
@@ -24,7 +24,7 @@
    return '<div class="morning-row '+(r.status==='stale'?'stale':'')+'"><span class="morning-name">'+escape(r.name)+'</span><strong class="morning-value">'+value+'</strong><span class="morning-change '+tone(r.group==='yields'?r.change:r.changePct)+'">'+change+'</span><small>'+escape(quoted)+'（'+(r.quotedAt?'台北時間':'來源日期')+'）'+escape(state)+(r.unit?' · '+escape(r.unit):'')+' · <a href="'+escape(sourceUrl)+'" target="_blank" rel="noreferrer">'+escape(r.source)+'</a></small></div>';
   }).join('')+'</article>').join('');
   const us=active.rows.filter(r=>r.group==='us'&&r.status==='ok'&&r.changePct!=null);
-  const rising=us.filter(r=>r.changePct>0).length,falling=us.filter(r=>r.changePct<0).length;
+  const rising=us.filter(r=>r.changePct>=.005).length,falling=us.filter(r=>r.changePct<=-.005).length;
   const oil=active.rows.find(r=>r.id==='CL=F'&&r.status==='ok');
   const vix=active.rows.find(r=>r.id==='^VIX'&&r.status==='ok');
   const text=[];

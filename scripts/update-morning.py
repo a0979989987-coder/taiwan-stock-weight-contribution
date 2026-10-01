@@ -52,6 +52,14 @@ def parse_chart(raw, symbol, cutoff):
  if not prior:
   raise ValueError('缺少前一交易日收盤價')
  previous = prior[-1]
+ # Futures can roll contracts; the provider's session reference avoids comparing
+ # the current contract with the preceding candle's expired contract.
+ explicit=meta.get('previousClose')
+ session_change=meta.get('fulldayChange')
+ if finite(explicit):
+  previous=explicit
+ elif isinstance(session_change,(float,int)) and math.isfinite(session_change) and finite(meta.get('fulldayPrice')) and abs(meta['fulldayPrice']-price)<1e-6 and finite(price-session_change):
+  previous=price-session_change
  return {'value':price,'change':price-previous,'changePct':(price/previous-1)*100,
          'previousClose':previous,'quotedAt':dt.datetime.fromtimestamp(market_time,dt.timezone.utc).isoformat(),
          'marketDate':market_day.isoformat(),'status':'ok'}

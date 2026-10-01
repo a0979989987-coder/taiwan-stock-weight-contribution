@@ -13,6 +13,10 @@ class MorningTests(unittest.TestCase):
   self.assertAlmostEqual(r['changePct'],10)
   with self.assertRaises(ValueError):m.parse_chart(raw,'WRONG',172801)
   with self.assertRaises(ValueError):m.parse_chart(raw,'TEST',172799)
+  raw['chart']['result'][0]['meta'].update(fulldayPrice=110,fulldayChange=2)
+  r=m.parse_chart(raw,'TEST',172801)
+  self.assertEqual(r['previousClose'],108)
+  self.assertEqual(r['change'],2)
  def test_treasury_dates_and_percent_units(self):
   xml='<feed xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"><m:properties><d:NEW_DATE>2026-09-30T00:00:00</d:NEW_DATE><d:BC_2YEAR>4.88</d:BC_2YEAR><d:BC_10YEAR>5.29</d:BC_10YEAR></m:properties><m:properties><d:NEW_DATE>2026-10-01T00:00:00</d:NEW_DATE><d:BC_2YEAR>4.90</d:BC_2YEAR><d:BC_10YEAR>5.31</d:BC_10YEAR></m:properties></feed>'
   self.assertEqual(m.parse_treasury(xml,'2026-09-30'),[('2026-09-30',4.88,5.29)])
