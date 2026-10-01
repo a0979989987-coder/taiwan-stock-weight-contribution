@@ -6,7 +6,7 @@
   <meta name="description" content="每日盤後解析十二大權值股對臺灣加權股價指數的影響">
   <title>台股加權點數計算機</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261001-morning">
 </head>
 <body>
   <main>
@@ -14,6 +14,8 @@
       <div class="brand"><span class="logo">12</span><span>台股觀測<small>TAIEX / AFTER CLOSE</small></span></div>
       <span class="pill">每日盤後 · 收盤價計算</span>
     </header>
+    <nav class="view-tabs" aria-label="功能切換"><button id="tab-close" class="selected" type="button" aria-pressed="true">加權貢獻</button><button id="tab-morning" type="button" aria-pressed="false">金融早報 <small>08:30</small></button></nav>
+    <div id="close-view">
     <section class="heading">
       <div><p class="eyebrow">AFTER THE BELL</p><h1>台股加權點數計算機</h1><p>每日盤後解析十二大權值股對加權指數的影響</p></div>
       <button id="refresh" type="button">立即更新盤後資料</button>
@@ -46,7 +48,16 @@
       <details open><summary>盤後更新與歷史紀錄</summary><p>按「立即更新」會直接抓取證交所正式盤後報表並更新本頁，不需登入。台北時間 13:30 後可更新；官方尚未公布時保留最近完整結果。GitHub Actions 也會定時保存歷史資料；十二檔與前一交易日資料全部驗證通過後，才按日期新增歷史紀錄。休市、延遲或缺漏時保留最近完整結果。</p></details>
       <details><summary>估算方式與資料來源</summary><p>個股貢獻點數 ＝ 前一交易日加權指數收盤 × 個股公布權重 ×（當日收盤價 ÷ 前一交易日實際收盤價 − 1）。合計先加總未四捨五入數值，再顯示小數兩位。</p><p>權重採期交所最新公布資料，通常每月底更新。除權息、股本及指數基值調整可能造成估算差異，本工具並非官方精確歸因。</p><p><a href="https://www.taifex.com.tw/cht/9/futuresQADetail" target="_blank" rel="noreferrer">期交所・權重資料 ↗</a>　<a href="https://www.twse.com.tw/zh/trading/historical/mi-index.html" target="_blank" rel="noreferrer">證交所・每日收盤行情 ↗</a></p></details>
     </footer>
+    </div>
+    <section id="morning-view" hidden aria-label="金融早報">
+      <div class="morning-toolbar"><div><strong id="morning-title">金融早報</strong><p id="morning-time">每天台北時間 08:30 抓取</p></div><div class="morning-actions"><label for="morning-date">歷史日期</label><select id="morning-date" disabled><option>載入中</option></select><button id="morning-reload" type="button">重新讀取</button></div></div>
+      <div id="morning-notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div id="morning-cards" class="morning-grid"></div>
+      <div class="morning-focus"><span>市場焦點</span><p id="morning-focus">正在整理行情…</p></div>
+      <p class="morning-footnote">每日快照，非即時行情。各列標示來源報價日期與時間；休市沿用最近報價，抓取失敗會標示「沿用舊資料」。商品採期貨報價；美債採美國財政部每日殖利率，變動以基點（bp）顯示。GitHub 排程可能延遲，實際抓取時間以頁面為準。</p>
+    </section>
   </main>
-  <script src="app.js?v=20260930-refresh"></script>
+  <script src="app.js?v=20261001-morning"></script>
+  <script src="morning.js?v=20261001-morning"></script>
 </body>
 </html>
