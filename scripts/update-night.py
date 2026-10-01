@@ -49,6 +49,8 @@ def parse(html,requested):
 
 def main():
  now=dt.datetime.now(ZoneInfo('Asia/Taipei'));path=ROOT/'data/night.json'
+ if now.hour*60+now.minute<810:
+  print('Before 13:30 Asia/Taipei: preserve last night snapshot');return
  previous=json.loads(path.read_text()) if path.exists() else None
  latest=None;errors=[]
  today=now.date() if now.hour>=5 else now.date()-dt.timedelta(days=1)

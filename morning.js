@@ -9,8 +9,8 @@
  function message(text){el('morning-notice').hidden=false;el('morning-notice').textContent=text;}
  function render(){
   if(!active)return;
-  el('morning-title').textContent=active.date.replaceAll('-','/')+' 金融早報';
-  el('morning-time').textContent='每天 08:30（台北）・實際抓取 '+new Date(active.collectedAt).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',hour12:false});
+  el('morning-title').textContent=active.date.replaceAll('-','/')+' 金融日報';
+  el('morning-time').textContent='每天 13:30 後（台北，13:35 排程）・實際抓取 '+new Date(active.collectedAt).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',hour12:false});
   const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei'}).format(new Date());
   el('morning-notice').hidden=true;
   if(active.date<today)message('今日早報尚未更新，顯示最近已儲存快照。');
@@ -19,9 +19,10 @@
    const value=number(r.value,r.decimals)+(r.group==='yields'&&r.value!=null?'%':'');
    const change=r.group==='yields'?(r.change==null?'—':sign(r.change)+number(r.change,1)+' bp'):(r.changePct==null?'—':sign(r.changePct)+number(r.changePct)+'%');
    const quoted=r.quotedAt?new Date(r.quotedAt).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',hour12:false}):r.marketDate||'未取得';
+   const kind=r.quoteKind==='previous-close'?' · 前一交易日收盤':'';
    const state=r.status==='stale'?' · 沿用舊資料':r.status==='unavailable'?' · 暫無資料':'';
    const sourceUrl=/^https:\/\/(finance\.yahoo\.com|home\.treasury\.gov)\//.test(r.sourceUrl||'')?r.sourceUrl:'#';
-   return '<div class="morning-row '+(r.status==='stale'?'stale':'')+'"><span class="morning-name">'+escape(r.name)+'</span><strong class="morning-value">'+value+'</strong><span class="morning-change '+tone(r.group==='yields'?r.change:r.changePct)+'">'+change+'</span><small>'+escape(quoted)+'（'+(r.quotedAt?'台北時間':'來源日期')+'）'+escape(state)+(r.unit?' · '+escape(r.unit):'')+' · <a href="'+escape(sourceUrl)+'" target="_blank" rel="noreferrer">'+escape(r.source)+'</a></small></div>';
+   return '<div class="morning-row '+(r.status==='stale'?'stale':'')+'"><span class="morning-name">'+escape(r.name)+'</span><strong class="morning-value">'+value+'</strong><span class="morning-change '+tone(r.group==='yields'?r.change:r.changePct)+'">'+change+'</span><small>'+escape(quoted)+'（'+(r.quotedAt?'台北時間':'來源日期')+'）'+escape(kind)+escape(state)+(r.unit?' · '+escape(r.unit):'')+' · <a href="'+escape(sourceUrl)+'" target="_blank" rel="noreferrer">'+escape(r.source)+'</a></small></div>';
   }).join('')+'</article>').join('');
   const us=active.rows.filter(r=>r.group==='us'&&r.status==='ok'&&r.changePct!=null);
   const rising=us.filter(r=>r.changePct>=.005).length,falling=us.filter(r=>r.changePct<=-.005).length;

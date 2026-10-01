@@ -7,7 +7,7 @@ node('tab-morning').events.click();
 setImmediate(async()=>{
  assert.equal(node('close-view').hidden,true);assert.equal(node('morning-view').hidden,false);
  assert.match(node('morning-cards').innerHTML,/美國股市/);assert.match(node('morning-cards').innerHTML,/美國公債殖利率/);
- assert.match(node('morning-title').textContent,/金融早報/);
+ assert.match(node('morning-title').textContent,/金融日報/);
  const before=node('morning-cards').innerHTML;failure=true;await node('morning-reload').events.click();
  assert.equal(node('morning-cards').innerHTML,before);assert.match(node('morning-notice').textContent,/保留目前資料/);
  node('tab-close').events.click();assert.equal(node('close-view').hidden,false);assert.equal(node('morning-view').hidden,true);

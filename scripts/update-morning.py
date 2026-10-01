@@ -4,6 +4,7 @@ import datetime as dt
 import json
 import math
 import os
+import sys
 from pathlib import Path
 import urllib.parse
 import urllib.request
@@ -33,7 +34,7 @@ def read(url):
 def finite(value):
  return isinstance(value,(float,int)) and math.isfinite(value) and value > 0
 
-def parse_chart(raw, symbol, cutoff):
+def parse_chart(raw, symbol, cutoff, previous_date=None):
  result = raw['chart']['result'][0]
  meta = result['meta']
  if meta.get('symbol') != symbol:
@@ -41,6 +42,12 @@ def parse_chart(raw, symbol, cutoff):
  stamps = result.get('timestamp',[])
  closes = result['indicators']['quote'][0]['close']
  pairs = [(int(t),v) for t,v in zip(stamps,closes) if finite(v) and int(t)<=cutoff]
+ if previous_date:
+  timezone=ZoneInfo(meta.get('exchangeTimezoneName','UTC'))
+  closed=[(dt.datetime.fromtimestamp(t,timezone).date().isoformat(),v) for t,v in pairs if dt.datetime.fromtimestamp(t,timezone).date().isoformat()<previous_date]
+  if len(closed)<2:raise ValueError('前一交易日與比較日收盤資料不足')
+  latest,previous=closed[-1],closed[-2]
+  return {'value':latest[1],'change':latest[1]-previous[1],'changePct':(latest[1]/previous[1]-1)*100,'previousClose':previous[1],'quotedAt':None,'marketDate':latest[0],'comparisonDate':previous[0],'quoteKind':'previous-close','status':'ok'}
  market_time = meta.get('regularMarketTime')
  price = meta.get('regularMarketPrice')
  if not finite(price) or not isinstance(market_time,(int,float)) or market_time>cutoff:
@@ -64,14 +71,14 @@ def parse_chart(raw, symbol, cutoff):
          'previousClose':previous,'quotedAt':dt.datetime.fromtimestamp(market_time,dt.timezone.utc).isoformat(),
          'marketDate':market_day.isoformat(),'status':'ok'}
 
-def quote(item, cutoff):
+def quote(item, cutoff, as_of_date=None):
  group,name,symbol,decimals,unit = item
  url = 'https://query1.finance.yahoo.com/v8/finance/chart/'+urllib.parse.quote(symbol,safe='')+'?interval=1d&range=1mo'
  row = {'id':symbol,'group':group,'name':name,'decimals':decimals,'unit':unit,
         'source':'Yahoo Finance','sourceUrl':'https://finance.yahoo.com/quote/'+urllib.parse.quote(symbol,safe='')+'/'}
  try:
   raw=json.loads(read(url))
-  row.update(parse_chart(raw,symbol,int(dt.datetime.now(dt.timezone.utc).timestamp())))
+  row.update(parse_chart(raw,symbol,int(dt.datetime.now(dt.timezone.utc).timestamp()),as_of_date if group=='asia' else None))
  except Exception as error:
   row.update(value=None,change=None,changePct=None,status='unavailable',error=str(error)[:180])
  return row
@@ -111,8 +118,22 @@ def main():
  now=dt.datetime.now(TAIPEI)
  path=ROOT/'data/morning.json'
  prior=json.loads(path.read_text()) if path.exists() else {'reports':[]}
+ repair='--repair-asia' in sys.argv
+ if repair:
+  if not prior.get('reports'):raise ValueError('沒有可修正的既有快照')
+  report=prior['reports'][0]
+  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+   asia=list(pool.map(lambda item:quote(item,int(now.timestamp()),report['date']),[item for item in MARKETS if item[0]=='asia']))
+  if any(row['status']!='ok' for row in asia):raise ValueError('亞洲歷史收盤不完整，保留原快照')
+  replacements={row['id']:row for row in asia}
+  report['rows']=[replacements.get(row['id'],row) for row in report['rows']]
+  report['scheduledTime']='13:35 Asia/Taipei';report['asiaCorrectedAt']=now.isoformat()
+  path.write_text(json.dumps(prior,ensure_ascii=False,indent=2)+'\n')
+  print('Repaired previous-session Asia closes:',report['date']);return
+ if now.hour*60+now.minute<810:
+  print('Before 13:30 Asia/Taipei: preserve last snapshot');return
  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-  rows=list(pool.map(lambda item:quote(item,int(now.timestamp())),MARKETS))
+  rows=list(pool.map(lambda item:quote(item,int(now.timestamp()),now.date().isoformat()),MARKETS))
  rows.extend(yields(now))
  # Missing sources retain the previous known quote, explicitly marked as stale.
  previous={r['id']:r for r in (prior.get('reports') or [{}])[0].get('rows',[])}
@@ -120,7 +141,7 @@ def main():
   if row['status']=='unavailable' and finite(previous.get(row['id'],{}).get('value')):
    rows[i]={**previous[row['id']], 'status':'stale','error':row['error']}
  report={'date':now.date().isoformat(),'startedAt':now.isoformat(),'collectedAt':dt.datetime.now(TAIPEI).isoformat(),
-         'scheduledTime':'08:30 Asia/Taipei','trigger':os.getenv('GITHUB_EVENT_NAME','manual'),
+         'scheduledTime':'13:35 Asia/Taipei','trigger':os.getenv('GITHUB_EVENT_NAME','manual'),
          'rows':rows,'complete':all(r['status']=='ok' for r in rows)}
  reports=[report]+[r for r in prior.get('reports',[]) if r.get('date')!=report['date']]
  reports.sort(key=lambda r:r['date'],reverse=True)
