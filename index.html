@@ -6,7 +6,7 @@
   <meta name="description" content="每日盤後解析十二大權值股對臺灣加權股價指數的影響">
   <title>台股加權點數計算機</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261001-morning">
+  <link rel="stylesheet" href="styles.css?v=20261001-night">
 </head>
 <body>
   <main>
@@ -35,6 +35,12 @@
       <div><span>下跌拖累合計</span><b id="negative-points">—</b></div>
       <div><span>當日加權指數實際漲跌</span><b id="actual-points">—</b></div>
     </section>
+    <section class="night-panel" aria-label="臺指期夜盤">
+      <div class="night-header"><div><strong>臺指期夜盤</strong><p id="night-contract">近月 TX</p></div><button id="night-reload" type="button">重新讀取</button></div>
+      <div class="night-values"><div><span>夜盤收盤</span><strong id="night-close">—</strong></div><div><span>夜盤漲跌</span><strong id="night-change">—</strong></div><div><span>夜盤低點 – 高點</span><strong id="night-range">—</strong></div></div>
+      <p id="night-session">正在讀取最近已完成夜盤…</p><p id="night-status" role="status" aria-live="polite"></p>
+      <p class="night-note">夜盤日期獨立於上方現貨盤後日期；漲跌採期交所公布基準。<a id="night-source" href="https://www.taifex.com.tw/cht/3/futDailyMarketReport" target="_blank" rel="noreferrer">期交所來源 ↗</a></p>
+    </section>
     <section class="board">
       <div class="board-title"><div><h2>十二大權值股</h2><span>上漲紅色 · 下跌綠色 · 平盤灰色</span></div>
         <div class="sort-controls"><label for="sort">排序</label><select id="sort"><option value="weight">權重</option><option value="points">貢獻點數</option><option value="changePct">漲跌幅</option></select><button id="direction" type="button">由高到低 ↓</button></div>
@@ -59,5 +65,6 @@
   </main>
   <script src="app.js?v=20261001-morning"></script>
   <script src="morning.js?v=20261001-morning-2"></script>
+  <script src="night.js?v=20261001-night"></script>
 </body>
 </html>

@@ -29,6 +29,9 @@ jobs:
       - name: Capture 08:30 Taipei morning briefing
         if: github.event_name != 'schedule' || github.event.schedule == '30 0 * * *'
         run: python scripts/update-morning.py
+      - name: Capture latest completed TX night session
+        if: github.event_name != 'schedule' || github.event.schedule == '30 0 * * *'
+        run: python scripts/update-night.py
       - name: Update complete daily close data
         if: github.event_name != 'schedule' || github.event.schedule != '30 0 * * *'
         continue-on-error: true
@@ -36,7 +39,7 @@ jobs:
       - name: Commit a new trading day when available
         id: commit
         run: |
-          if ! git diff --quiet -- data/history.json data/morning.json; then
+          if ! git diff --quiet -- data/history.json data/morning.json data/night.json; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data/history.json data/morning.json
