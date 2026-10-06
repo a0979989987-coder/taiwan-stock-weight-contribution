@@ -27,6 +27,13 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - name: Verify official post-close parsers and tabs
+        run: |
+          node --test tests/post-close.test.mjs
+          node tests/post-close-ui.cjs
+          node tests/morning-ui.cjs
+      - name: Capture market close and institutional futures positioning
+        run: node scripts/update-post-close.mjs
       - name: Capture market briefing after 13:30 Taipei
         if: github.event_name != 'schedule' || github.event.schedule == '35 5 * * *'
         run: python scripts/update-morning.py
@@ -39,10 +46,10 @@ jobs:
       - name: Commit a new trading day when available
         id: commit
         run: |
-          if ! git diff --quiet -- data/history.json data/morning.json data/night.json; then
+          if ! git diff --quiet -- data/history.json data/morning.json data/night.json data/post-close.json; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data/history.json data/morning.json data/night.json
+            git add data/history.json data/morning.json data/night.json data/post-close.json
             git commit -m "data: update daily market snapshots"
             git push
           fi

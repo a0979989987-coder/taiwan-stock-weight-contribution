@@ -46,7 +46,7 @@
   }catch(error){message(error.message+'；已保留目前資料。');}
   finally{button.disabled=false;button.textContent='重新讀取';}
  }
- function show(morning){el('close-view').hidden=morning;el('morning-view').hidden=!morning;for(const [id,selected] of [['tab-close',!morning],['tab-morning',morning]]){el(id).classList.toggle('selected',selected);el(id).setAttribute('aria-pressed',String(selected));}if(morning&&!loaded)load();}
+ function show(morning){el('close-view').hidden=morning;el('morning-view').hidden=!morning;if(el('post-close-view'))el('post-close-view').hidden=true;for(const [id,selected] of [['tab-close',!morning],['tab-morning',morning],['tab-post-close',false]]){if(!el(id))continue;el(id).classList.toggle('selected',selected);el(id).setAttribute('aria-pressed',String(selected));}if(morning&&!loaded)load();}
  el('tab-close').addEventListener('click',()=>show(false));el('tab-morning').addEventListener('click',()=>show(true));
  el('morning-reload').addEventListener('click',load);
  el('morning-date').addEventListener('change',e=>{active=reports.find(r=>r.date===e.target.value);render();});
