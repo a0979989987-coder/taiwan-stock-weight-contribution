@@ -2,17 +2,17 @@
   "reports": [
     {
       "date": "2026-10-06",
-      "collectedAt": "2026-10-06T09:21:41.246Z",
-      "checkedAt": "2026-10-06T09:21:41.246Z",
+      "collectedAt": "2026-10-06T09:23:45.038Z",
+      "checkedAt": "2026-10-06T09:23:45.038Z",
       "cash": {
         "date": "2026-10-06",
         "close": 49822.55,
         "change": 110.51,
-        "turnover": 1021722793978,
+        "turnover": 1026204771139,
         "changePct": 0.22230027172491815,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261006",
-        "collectedAt": "2026-10-06T09:21:41.246Z"
+        "collectedAt": "2026-10-06T09:23:45.038Z"
       },
       "institutions": {
         "date": "2026-10-06",
@@ -22,17 +22,7 @@
         "total": -20786749597,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261006",
-        "collectedAt": "2026-10-06T09:21:41.246Z"
-      },
-      "quote": {
-        "date": "2026-10-06",
-        "contract": "202610",
-        "close": 50060,
-        "change": 116,
-        "changePct": 0.23,
-        "status": "ok",
-        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F06&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-10-06T09:21:41.246Z"
+        "collectedAt": "2026-10-06T09:23:45.038Z"
       },
       "futures": {
         "date": "2026-10-06",
@@ -53,7 +43,17 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F10%2F06&commodityId=TXF",
-        "collectedAt": "2026-10-06T09:21:41.246Z"
+        "collectedAt": "2026-10-06T09:23:45.038Z"
+      },
+      "quote": {
+        "date": "2026-10-06",
+        "contract": "202610",
+        "close": 50060,
+        "change": 116,
+        "changePct": 0.23,
+        "status": "ok",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F06&marketCode=0&commodity_id=TX",
+        "collectedAt": "2026-10-06T09:23:45.038Z"
       },
       "complete": true,
       "message": "已重新取得完整盤後資料。"
