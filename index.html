@@ -6,7 +6,7 @@
   <meta name="description" content="每日盤後解析十二大權值股對臺灣加權股價指數的影響">
   <title>台股加權點數計算機</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261006-post-close">
+  <link rel="stylesheet" href="styles.css?v=20261006-bulletin">
 </head>
 <body>
   <main>
@@ -14,7 +14,7 @@
       <div class="brand"><span class="logo">12</span><span>台股觀測<small>TAIEX / AFTER CLOSE</small></span></div>
       <span class="pill">每日盤後 · 收盤價計算</span>
     </header>
-    <nav class="view-tabs" aria-label="功能切換"><button id="tab-close" class="selected" type="button" aria-pressed="true">加權貢獻</button><button id="tab-post-close" type="button" aria-pressed="false">盤後資訊</button><button id="tab-morning" type="button" aria-pressed="false">金融日報 <small>13:30 後</small></button></nav>
+    <nav class="view-tabs" aria-label="功能切換"><button id="tab-close" class="selected" type="button" aria-pressed="true">加權貢獻</button><button id="tab-post-close" type="button" aria-pressed="false">盤後資訊</button><button id="tab-bulletin" type="button" aria-pressed="false">市場快訊</button><button id="tab-morning" type="button" aria-pressed="false">金融日報 <small>13:30 後</small></button></nav>
     <div id="close-view">
     <section class="heading">
       <div><p class="eyebrow">AFTER THE BELL</p><h1>台股加權點數計算機</h1><p>每日盤後解析十二大權值股對加權指數的影響</p></div>
@@ -62,6 +62,13 @@
       <section class="morning-focus"><span>大盤分析</span><p id="post-close-analysis">資料載入後產生收盤與籌碼摘要。</p></section>
       <p class="morning-footnote">現貨：集中市場（上市）官方買賣超，單位億元。期貨：TX 台指期各月契約合計，交易及未平倉皆為多方減空方，單位口；近月收盤價另列。法人籌碼依官方公布時間補齊，尚未公布顯示「待公布」，各區日期分別標示。</p>
     </section>
+    <section id="bulletin-view" hidden aria-label="市場快訊">
+      <div class="morning-toolbar"><div><strong id="bulletin-date">收盤行情</strong><p id="bulletin-time">台北時間 13:30 後更新</p></div><div class="morning-actions"><label for="bulletin-history">歷史日期</label><select id="bulletin-history" disabled><option>載入中</option></select><button id="bulletin-refresh" type="button">立即更新</button></div></div>
+      <div id="bulletin-notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div class="bulletin-sheet"><div class="bulletin-scroll" tabindex="0" role="region" aria-label="收盤行情表，可左右捲動"><table class="bulletin-table"><caption>收盤行情</caption><thead><tr><th scope="col"></th><th scope="col">集中<br>市場</th><th scope="col">期貨</th><th scope="col">指數</th><th scope="col">漲跌</th><th scope="col">三大<br>法人</th><th scope="col">買賣超<br>（億）</th><th scope="col">交易淨額<br>（口）</th><th scope="col">未平倉淨額<br>（口）</th></tr></thead><tbody id="bulletin-rows"><tr><td colspan="9">正在取得收盤行情…</td></tr></tbody></table></div><div class="bulletin-analysis"><strong>【大盤分析】</strong><p id="bulletin-analysis">資料載入後產生摘要。</p></div></div>
+      <div id="bulletin-sources" class="bulletin-sources"></div>
+      <p class="morning-footnote">現貨為上市市場，期貨籌碼為 TX 全月份合計；台指期指數為近月日盤收盤。手機可左右滑動查看完整表格。</p>
+    </section>
     <section id="morning-view" hidden aria-label="金融日報">
       <div class="morning-toolbar"><div><strong id="morning-title">金融日報</strong><p id="morning-time">每天台北時間 13:30 後 抓取</p></div><div class="morning-actions"><label for="morning-date">歷史日期</label><select id="morning-date" disabled><option>載入中</option></select><button id="morning-reload" type="button">重新讀取</button></div></div>
       <div id="morning-notice" class="notice" role="status" aria-live="polite" hidden></div>
@@ -71,8 +78,8 @@
     </section>
   </main>
   <script src="app.js?v=20261001-morning"></script>
-  <script src="morning.js?v=20261006-tabs"></script>
+  <script src="morning.js?v=20261006-bulletin"></script>
   <script src="night.js?v=20261001-afternoon"></script>
-  <script src="post-close.js?v=20261006-institutions"></script>
+  <script src="post-close.js?v=20261006-bulletin"></script>
 </body>
 </html>

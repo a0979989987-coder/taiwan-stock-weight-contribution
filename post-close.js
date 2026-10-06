@@ -7,7 +7,7 @@
   const tone = n => finite(n) && n !== 0 ? n > 0 ? 'up' : 'down' : 'flat';
   const time = t => Number.isFinite(Date.parse(t)) ? new Date(t).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false }) : '—';
   let reports = [], active = null, loading = false, loaded = false;
-  function message(text) { el('post-close-notice').hidden = !text; el('post-close-notice').textContent = text; }
+  function message(text) { for (const id of ['post-close-notice', 'bulletin-notice']) { if (!el(id)) continue; el(id).hidden = !text; el(id).textContent = text; } }
   function merge(report, latest = false) {
     if (!report || !/^\d{4}-\d{2}-\d{2}$/.test(report.date)) return;
     const old = reports.find(r => r.date === report.date);
@@ -35,12 +35,25 @@
     const net = f?.rows?.foreign?.openInterestNet;
     if (finite(net)) summary.push(f.date + ' 外資台指期未平倉為' + (net > 0 ? '淨多 ' : net < 0 ? '淨空 ' : '多空持平 ') + number(Math.abs(net), 0) + (net ? ' 口' : ''));
     el('post-close-analysis').textContent = summary.length ? summary.join('；') + '。依官方資料整理。' : '官方資料尚未公布，暫不產生摘要。';
+    if (el('bulletin-rows')) {
+      el('bulletin-date').textContent = active.date.replaceAll('-', '/') + ' 市場快訊';
+      el('bulletin-time').textContent = el('post-close-time').textContent;
+      el('bulletin-history').innerHTML = el('post-close-date').innerHTML;
+      el('bulletin-history').disabled = false; el('bulletin-history').value = active.date;
+      const cell = (n, d = 2, signed = false) => '<td class="' + (signed ? tone(n) : '') + '">' + number(n, d, signed) + '</td>';
+      const futuresCells = key => cell(finite(inst?.[key]) ? inst[key] / 1e8 : null, 2, true) + cell(f?.rows?.[key]?.tradingNet, 0, true) + cell(f?.rows?.[key]?.openInterestNet, 0, true);
+      el('bulletin-rows').innerHTML = '<tr><th scope="row">加權指數</th>' + cell(c?.close) + '<td rowspan="3">台指</td>' + '<td rowspan="3">' + number(q?.close) + '</td><td rowspan="3" class="' + tone(q?.change) + '">' + number(q?.change, 2, true) + '</td><th scope="row">外資</th>' + futuresCells('foreign') + '</tr>' +
+        '<tr><th scope="row">漲　跌</th>' + cell(c?.change, 2, true) + '<th scope="row">投信</th>' + futuresCells('trust') + '</tr>' +
+        '<tr><th scope="row">成交金額（億）</th>' + cell(finite(c?.turnover) ? c.turnover / 1e8 : null) + '<th scope="row">自營商</th>' + futuresCells('dealer') + '</tr>';
+      el('bulletin-analysis').textContent = el('post-close-analysis').textContent;
+      el('bulletin-sources').innerHTML = [['集中市場', c], ['台指期日盤', q], ['現貨法人', inst], ['期貨法人', f]].map(([name, r]) => '<div><strong>' + name + '</strong>' + stamp(r) + '</div>').join('');
+    }
     const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Taipei' }).format(new Date());
     message(active.date < today ? '顯示歷史或最近有效交易日，各區資料日期分別標示。' : active.complete ? '' : active.message || '部分官方資料待公布，已保留有效資料。');
   }
   async function load(force = false) {
     if (loading) return; loading = true;
-    const button = el('post-close-refresh'); button.disabled = true; button.textContent = force ? '抓取中…' : '讀取中…';
+    const buttons = ['post-close-refresh', 'bulletin-refresh'].map(el).filter(Boolean); for (const button of buttons) { button.disabled = true; button.textContent = force ? '抓取中…' : '讀取中…'; }
     try {
       if (!force) {
         try { const r = await fetch('data/post-close.json', { cache: 'no-store', signal: AbortSignal.timeout(10000) }); if (r.ok) { const s = await r.json(); for (const report of s.reports || []) merge(report); render(); } } catch {}
@@ -51,13 +64,18 @@
       if (result.message) message(result.message);
       if (!active) message('尚無盤後快照，請在 13:30 後按立即更新。');
     } catch (e) { message('更新未完成：' + (e.name === 'TimeoutError' ? '官方來源回應逾時' : e.message) + '；保留目前有效資料。'); }
-    finally { loading = false; button.disabled = false; button.textContent = '立即更新'; }
+    finally { loading = false; for (const button of buttons) { button.disabled = false; button.textContent = '立即更新'; } }
   }
-  el('tab-post-close').addEventListener('click', () => {
-    el('close-view').hidden = true; el('morning-view').hidden = true; el('post-close-view').hidden = false;
-    for (const id of ['tab-close', 'tab-morning', 'tab-post-close']) { el(id).classList.toggle('selected', id === 'tab-post-close'); el(id).setAttribute('aria-pressed', String(id === 'tab-post-close')); }
+  function showView(bulletin) {
+    el('close-view').hidden = true; el('morning-view').hidden = true; el('post-close-view').hidden = bulletin;
+    if (el('bulletin-view')) el('bulletin-view').hidden = !bulletin;
+    for (const id of ['tab-close', 'tab-morning', 'tab-post-close', 'tab-bulletin']) { if (!el(id)) continue; const selected = id === (bulletin ? 'tab-bulletin' : 'tab-post-close'); el(id).classList.toggle('selected', selected); el(id).setAttribute('aria-pressed', String(selected)); }
     if (!loaded) load();
-  });
+  }
+  el('tab-post-close').addEventListener('click', () => showView(false));
+  if (el('tab-bulletin')) el('tab-bulletin').addEventListener('click', () => showView(true));
+  if (el('bulletin-refresh')) el('bulletin-refresh').addEventListener('click', () => load(true));
+  if (el('bulletin-history')) el('bulletin-history').addEventListener('change', e => { active = reports.find(r => r.date === e.target.value); render(); });
   el('post-close-refresh').addEventListener('click', () => load(true));
   el('post-close-date').addEventListener('change', e => { active = reports.find(r => r.date === e.target.value); render(); });
 })();

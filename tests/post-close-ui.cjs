@@ -17,7 +17,15 @@ vm.runInNewContext(fs.readFileSync(__dirname + '/../post-close.js', 'utf8'), san
   assert.equal(node('post-close-refresh').disabled, false);
   const before = node('post-close-cards').innerHTML; failure = true; await node('post-close-refresh').events.click();
   assert.equal(node('post-close-cards').innerHTML, before); assert.match(node('post-close-notice').textContent, /保留目前/);
-  node('tab-morning').events.click(); assert.equal(node('post-close-view').hidden, true); assert.equal(node('morning-view').hidden, false);
+  failure = false;
+  node('tab-bulletin').events.click(); await new Promise(setImmediate);
+  assert.equal(node('bulletin-view').hidden, false); assert.equal(node('post-close-view').hidden, true);
+  assert.match(node('bulletin-rows').innerHTML, /成交金額（億）/); assert.match(node('bulletin-rows').innerHTML, /rowspan="3"/);
+  assert.equal(node('bulletin-analysis').textContent, node('post-close-analysis').textContent);
+  await node('bulletin-refresh').events.click(); assert.equal(calls.at(-1).options.method, 'POST');
+  report = { date: report.date, checkedAt: report.checkedAt, complete: false };
+  await node('bulletin-refresh').events.click(); assert.match(node('bulletin-rows').innerHTML, /—/); assert.doesNotMatch(node('bulletin-rows').innerHTML, />0\.00</);
+  node('tab-morning').events.click(); assert.equal(node('bulletin-view').hidden, true); assert.equal(node('post-close-view').hidden, true); assert.equal(node('morning-view').hidden, false);
   node('tab-close').events.click(); assert.equal(node('post-close-view').hidden, true); assert.equal(node('close-view').hidden, false);
   assert.equal(node('tab-post-close').attrs['aria-pressed'], 'false');
   console.log('PASS: tabs, institutional amounts, live POST refresh, and failure preservation');
