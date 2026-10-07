@@ -2,8 +2,8 @@
   "reports": [
     {
       "date": "2026-10-06",
-      "collectedAt": "2026-10-07T05:50:01.978Z",
-      "checkedAt": "2026-10-07T05:50:01.978Z",
+      "collectedAt": "2026-10-07T05:54:35.471Z",
+      "checkedAt": "2026-10-07T05:54:35.471Z",
       "cash": {
         "date": "2026-10-06",
         "close": 49822.55,
@@ -12,7 +12,7 @@
         "changePct": 0.22230027172491815,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261007",
-        "collectedAt": "2026-10-07T05:50:01.978Z"
+        "collectedAt": "2026-10-07T05:54:35.471Z"
       },
       "institutions": {
         "date": "2026-10-06",
@@ -22,7 +22,17 @@
         "total": -19201048179,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261006",
-        "collectedAt": "2026-10-07T05:50:01.978Z"
+        "collectedAt": "2026-10-07T05:54:35.471Z"
+      },
+      "quote": {
+        "date": "2026-10-06",
+        "contract": "202610",
+        "close": 50060,
+        "change": 116,
+        "changePct": 0.23,
+        "status": "ok",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F06&marketCode=0&commodity_id=TX",
+        "collectedAt": "2026-10-07T05:54:35.471Z"
       },
       "futures": {
         "date": "2026-10-06",
@@ -43,17 +53,7 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F10%2F06&commodityId=TXF",
-        "collectedAt": "2026-10-07T05:50:01.978Z"
-      },
-      "quote": {
-        "date": "2026-10-06",
-        "contract": "202610",
-        "close": 50060,
-        "change": 116,
-        "changePct": 0.23,
-        "status": "ok",
-        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F06&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-10-07T05:50:01.978Z"
+        "collectedAt": "2026-10-07T05:54:35.471Z"
       },
       "complete": true,
       "message": "今日尚無完整收盤資料，顯示最近交易日。"
