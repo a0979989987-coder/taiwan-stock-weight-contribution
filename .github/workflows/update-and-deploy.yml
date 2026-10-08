@@ -5,7 +5,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '40 5 * * 1-5'
-    - cron: '35,40 8 * * 1-5'
+    # Retry while exchanges publish close / institutional data (Taipei 14:10–17:40).
+    - cron: '10,40 6-9 * * 1-5'
+    - cron: '35 8 * * 1-5'
     - cron: '35 5 * * *'
 permissions:
   contents: write

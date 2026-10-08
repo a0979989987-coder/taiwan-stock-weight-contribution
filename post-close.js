@@ -6,14 +6,15 @@
   const number = (n, digits = 2, signed = false) => finite(n) ? (signed && n > 0 ? '+' : '') + n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits }) : '—';
   const tone = n => finite(n) && n !== 0 ? n > 0 ? 'up' : 'down' : 'flat';
   const time = t => Number.isFinite(Date.parse(t)) ? new Date(t).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false }) : '—';
-  let reports = [], active = null, loading = false, loaded = false;
+  let reports = [], active = null, loading = false, loaded = false, followLatest = true, lastLoad = 0;
   function message(text) { for (const id of ['post-close-notice', 'bulletin-notice']) { if (!el(id)) continue; el(id).hidden = !text; el(id).textContent = text; } }
   function merge(report, latest = false) {
     if (!report || !/^\d{4}-\d{2}-\d{2}$/.test(report.date)) return;
     const old = reports.find(r => r.date === report.date);
     if (!old || Date.parse(report.checkedAt || report.collectedAt) >= Date.parse(old.checkedAt || old.collectedAt)) reports = [report, ...reports.filter(r => r.date !== report.date)];
     reports.sort((a, b) => b.date.localeCompare(a.date));
-    active = latest || !active ? reports[0] : reports.find(r => r.date === active.date) || reports[0];
+    if (latest) followLatest = true;
+    active = followLatest || !active ? reports[0] : reports.find(r => r.date === active.date) || reports[0];
   }
   const stamp = r => '<p class="post-close-source">資料日 ' + escape(r?.date || '—') + (r?.status === 'stale' ? ' · 沿用上次有效資料' : r?.status === 'unavailable' || !r ? ' · 待公布' : '') + (r?.collectedAt ? ' · 取得 ' + escape(time(r.collectedAt)) : '') + (r?.sourceUrl && /^https:\/\/(www\.twse\.com\.tw|www\.taifex\.com\.tw)\//.test(r.sourceUrl) ? ' · <a href="' + escape(r.sourceUrl) + '" target="_blank" rel="noreferrer">官方來源 ↗</a>' : '') + '</p>';
   function render() {
@@ -52,7 +53,7 @@
     message(active.date < today ? '顯示歷史或最近有效交易日，各區資料日期分別標示。' : active.complete ? '' : active.message || '部分官方資料待公布，已保留有效資料。');
   }
   async function load(force = false) {
-    if (loading) return; loading = true;
+    if (loading) return; loading = true; lastLoad = Date.now();
     const buttons = ['post-close-refresh', 'bulletin-refresh'].map(el).filter(Boolean); for (const button of buttons) { button.disabled = true; button.textContent = force ? '抓取中…' : '讀取中…'; }
     try {
       if (!force) {
@@ -70,12 +71,12 @@
     el('close-view').hidden = true; el('morning-view').hidden = true; el('post-close-view').hidden = bulletin;
     if (el('bulletin-view')) el('bulletin-view').hidden = !bulletin;
     for (const id of ['tab-close', 'tab-morning', 'tab-post-close', 'tab-bulletin']) { if (!el(id)) continue; const selected = id === (bulletin ? 'tab-bulletin' : 'tab-post-close'); el(id).classList.toggle('selected', selected); el(id).setAttribute('aria-pressed', String(selected)); }
-    if (!loaded) load();
+    if (!loaded || Date.now() - lastLoad >= 60000) load();
   }
   el('tab-post-close').addEventListener('click', () => showView(false));
   if (el('tab-bulletin')) el('tab-bulletin').addEventListener('click', () => showView(true));
   if (el('bulletin-refresh')) el('bulletin-refresh').addEventListener('click', () => load(true));
-  if (el('bulletin-history')) el('bulletin-history').addEventListener('change', e => { active = reports.find(r => r.date === e.target.value); render(); });
+  if (el('bulletin-history')) el('bulletin-history').addEventListener('change', e => { followLatest = e.target.value === reports[0]?.date; active = reports.find(r => r.date === e.target.value); render(); });
   el('post-close-refresh').addEventListener('click', () => load(true));
-  el('post-close-date').addEventListener('change', e => { active = reports.find(r => r.date === e.target.value); render(); });
+  el('post-close-date').addEventListener('change', e => { followLatest = e.target.value === reports[0]?.date; active = reports.find(r => r.date === e.target.value); render(); });
 })();
