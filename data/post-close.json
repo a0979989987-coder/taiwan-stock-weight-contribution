@@ -2,27 +2,27 @@
   "reports": [
     {
       "date": "2026-10-07",
-      "collectedAt": "2026-10-07T08:50:35.875Z",
-      "checkedAt": "2026-10-07T08:50:35.875Z",
+      "collectedAt": "2026-10-08T05:50:11.359Z",
+      "checkedAt": "2026-10-08T05:50:11.359Z",
       "cash": {
         "date": "2026-10-07",
         "close": 49806.37,
         "change": -16.18,
-        "turnover": 974389407116,
+        "turnover": 986280041197,
         "changePct": -0.03247525467885526,
         "status": "ok",
-        "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261007",
-        "collectedAt": "2026-10-07T08:50:35.875Z"
+        "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261008",
+        "collectedAt": "2026-10-08T05:50:11.359Z"
       },
       "institutions": {
         "date": "2026-10-07",
         "foreign": -13043886365,
-        "trust": -416843019,
+        "trust": -3323384085,
         "dealer": -7796456618,
-        "total": -21257186002,
+        "total": -24163727068,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261007",
-        "collectedAt": "2026-10-07T08:50:35.875Z"
+        "collectedAt": "2026-10-08T05:50:11.359Z"
       },
       "futures": {
         "date": "2026-10-07",
@@ -43,7 +43,7 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F10%2F07&commodityId=TXF",
-        "collectedAt": "2026-10-07T08:50:35.875Z"
+        "collectedAt": "2026-10-08T05:50:11.359Z"
       },
       "quote": {
         "date": "2026-10-07",
@@ -53,10 +53,10 @@
         "changePct": -0.21,
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F07&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-10-07T08:50:35.875Z"
+        "collectedAt": "2026-10-08T05:50:11.359Z"
       },
       "complete": true,
-      "message": "已重新取得完整盤後資料。"
+      "message": "今日尚無完整收盤資料，顯示最近交易日。"
     },
     {
       "date": "2026-10-06",
