@@ -2,8 +2,8 @@
   "reports": [
     {
       "date": "2026-10-14",
-      "collectedAt": "2026-10-14T11:45:36.964Z",
-      "checkedAt": "2026-10-14T11:45:36.964Z",
+      "collectedAt": "2026-10-14T13:57:08.331Z",
+      "checkedAt": "2026-10-14T13:57:08.331Z",
       "cash": {
         "date": "2026-10-14",
         "close": 48625.83,
@@ -12,17 +12,7 @@
         "changePct": 0.5885649354558243,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261014",
-        "collectedAt": "2026-10-14T11:45:36.964Z"
-      },
-      "institutions": {
-        "date": "2026-10-14",
-        "foreign": -20037340628,
-        "trust": 16111466319,
-        "dealer": -11470716964,
-        "total": -15396591273,
-        "status": "ok",
-        "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261014",
-        "collectedAt": "2026-10-14T11:45:36.964Z"
+        "collectedAt": "2026-10-14T13:57:08.331Z"
       },
       "futures": {
         "date": "2026-10-14",
@@ -43,7 +33,17 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F10%2F14&commodityId=TXF",
-        "collectedAt": "2026-10-14T11:45:36.964Z"
+        "collectedAt": "2026-10-14T13:57:08.331Z"
+      },
+      "institutions": {
+        "date": "2026-10-14",
+        "foreign": -20037340628,
+        "trust": 16027132708,
+        "dealer": -11470406010,
+        "total": -15480613930,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261014",
+        "collectedAt": "2026-10-14T13:57:08.331Z"
       },
       "quote": {
         "date": "2026-10-14",
@@ -53,7 +53,7 @@
         "changePct": 0.83,
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F14&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-10-14T11:45:36.964Z"
+        "collectedAt": "2026-10-14T13:57:08.331Z"
       },
       "complete": true,
       "message": "已重新取得完整盤後資料。"
