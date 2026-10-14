@@ -1,5 +1,162 @@
 [
   {
+    "date": "2026-10-14",
+    "previousDate": "2026-10-13",
+    "weightDate": "2026-09-30",
+    "savedAt": "2026-10-14T10:32:54.824Z",
+    "index": {
+      "close": 48625.83,
+      "previousClose": 48341.31,
+      "change": 284.5200000000041,
+      "changePct": 0.5885649354558329
+    },
+    "stocks": [
+      {
+        "rank": 1,
+        "code": "2330",
+        "name": "台積電",
+        "weight": 0.411212,
+        "close": 2490,
+        "previousClose": 2490,
+        "change": 0,
+        "changePct": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "code": "2454",
+        "name": "聯發科",
+        "weight": 0.05049000000000001,
+        "close": 4475,
+        "previousClose": 4525,
+        "change": -50,
+        "changePct": -1.1049723756906076,
+        "points": -26.969643556906075
+      },
+      {
+        "rank": 3,
+        "code": "2308",
+        "name": "台達電",
+        "weight": 0.03139,
+        "close": 1785,
+        "previousClose": 1775,
+        "change": 10,
+        "changePct": 0.5633802816901409,
+        "points": 8.548922371267606
+      },
+      {
+        "rank": 4,
+        "code": "2317",
+        "name": "鴻海",
+        "weight": 0.022559,
+        "close": 243,
+        "previousClose": 240,
+        "change": 3,
+        "changePct": 1.25,
+        "points": 13.631645153625
+      },
+      {
+        "rank": 5,
+        "code": "3711",
+        "name": "日月光投控",
+        "weight": 0.020095000000000002,
+        "close": 747,
+        "previousClose": 740,
+        "change": 7,
+        "changePct": 0.945945945945946,
+        "points": 9.18909509614865
+      },
+      {
+        "rank": 6,
+        "code": "2881",
+        "name": "富邦金",
+        "weight": 0.013524000000000001,
+        "close": 160.5,
+        "previousClose": 160,
+        "change": 0.5,
+        "changePct": 0.3125,
+        "points": 2.0430246138749997
+      },
+      {
+        "rank": 7,
+        "code": "1303",
+        "name": "南亞",
+        "weight": 0.012956,
+        "close": 349,
+        "previousClose": 319,
+        "change": 30,
+        "changePct": 9.404388714733543,
+        "points": 58.90062812163009
+      },
+      {
+        "rank": 8,
+        "code": "2303",
+        "name": "聯電",
+        "weight": 0.012418,
+        "close": 142,
+        "previousClose": 141.5,
+        "change": 0.5,
+        "changePct": 0.35335689045936397,
+        "points": 2.121209850106007
+      },
+      {
+        "rank": 9,
+        "code": "3037",
+        "name": "欣興",
+        "weight": 0.012313000000000001,
+        "close": 1185,
+        "previousClose": 1180,
+        "change": 5,
+        "changePct": 0.423728813559322,
+        "points": 2.5221463984322035
+      },
+      {
+        "rank": 10,
+        "code": "2383",
+        "name": "台光電",
+        "weight": 0.011307000000000001,
+        "close": 5520,
+        "previousClose": 5545,
+        "change": -25,
+        "changePct": -0.4508566275924256,
+        "points": -2.46436065
+      },
+      {
+        "rank": 11,
+        "code": "2882",
+        "name": "國泰金",
+        "weight": 0.010410999999999998,
+        "close": 114,
+        "previousClose": 114.5,
+        "change": -0.5,
+        "changePct": -0.43668122270742354,
+        "points": -2.1977352768995626
+      },
+      {
+        "rank": 12,
+        "code": "2408",
+        "name": "南亞科",
+        "weight": 0.010283,
+        "close": 480.5,
+        "previousClose": 488,
+        "change": -7.5,
+        "changePct": -1.5368852459016393,
+        "points": -7.639759591137294
+      }
+    ],
+    "totals": {
+      "positive": 96.95667160508457,
+      "negative": -39.27149907494293,
+      "net": 57.685172530141635
+    },
+    "methodology": "previous-index-close × published-weight × close-to-close-return/v1",
+    "sources": {
+      "current": "https://www.twse.com.tw/exchangeReport/MI_INDEX?response=json&date=20261014&type=ALLBUT0999",
+      "previous": "https://www.twse.com.tw/exchangeReport/MI_INDEX?response=json&date=20261013&type=ALLBUT0999",
+      "weights": "https://www.taifex.com.tw/cht/9/futuresQADetail"
+    }
+  },
+  {
     "date": "2026-10-13",
     "previousDate": "2026-10-12",
     "weightDate": "2026-09-30",
