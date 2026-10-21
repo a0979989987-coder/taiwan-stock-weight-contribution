@@ -2,8 +2,8 @@
   "reports": [
     {
       "date": "2026-10-21",
-      "collectedAt": "2026-10-21T10:34:45.980Z",
-      "checkedAt": "2026-10-21T10:34:45.980Z",
+      "collectedAt": "2026-10-21T11:41:48.266Z",
+      "checkedAt": "2026-10-21T11:41:48.266Z",
       "cash": {
         "date": "2026-10-21",
         "close": 46887.77,
@@ -12,7 +12,7 @@
         "changePct": 1.284947831126697,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261021",
-        "collectedAt": "2026-10-21T10:34:45.980Z"
+        "collectedAt": "2026-10-21T11:41:48.266Z"
       },
       "institutions": {
         "date": "2026-10-21",
@@ -22,7 +22,17 @@
         "total": 568349937,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261021",
-        "collectedAt": "2026-10-21T10:34:45.980Z"
+        "collectedAt": "2026-10-21T11:41:48.266Z"
+      },
+      "quote": {
+        "date": "2026-10-21",
+        "contract": "202610",
+        "close": 46648,
+        "change": 307,
+        "changePct": 0.66,
+        "status": "ok",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F21&marketCode=0&commodity_id=TX",
+        "collectedAt": "2026-10-21T11:41:48.266Z"
       },
       "futures": {
         "date": "2026-10-21",
@@ -43,21 +53,10 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F10%2F21&commodityId=TXF",
-        "collectedAt": "2026-10-21T10:34:45.980Z"
+        "collectedAt": "2026-10-21T11:41:48.266Z"
       },
-      "quote": {
-        "date": "2026-10-21",
-        "contract": "202610",
-        "close": 46648,
-        "change": 307,
-        "changePct": 0.66,
-        "status": "stale",
-        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F21&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-10-21T10:31:43.866Z",
-        "error": "The operation was aborted due to timeout"
-      },
-      "complete": false,
-      "message": "部分官方資料尚未公布，已標示待公布或保留舊資料。"
+      "complete": true,
+      "message": "已重新取得完整盤後資料。"
     },
     {
       "date": "2026-10-20",
