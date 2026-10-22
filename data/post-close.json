@@ -2,8 +2,8 @@
   "reports": [
     {
       "date": "2026-10-22",
-      "collectedAt": "2026-10-22T11:44:41.566Z",
-      "checkedAt": "2026-10-22T11:44:41.566Z",
+      "collectedAt": "2026-10-22T14:00:11.484Z",
+      "checkedAt": "2026-10-22T14:00:11.484Z",
       "cash": {
         "date": "2026-10-22",
         "close": 46041.43,
@@ -12,17 +12,17 @@
         "changePct": -1.8050335940480857,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261022",
-        "collectedAt": "2026-10-22T11:44:41.566Z"
+        "collectedAt": "2026-10-22T14:00:11.484Z"
       },
       "institutions": {
         "date": "2026-10-22",
-        "foreign": -81656527790,
-        "trust": 8874898142,
-        "dealer": -27378085012,
-        "total": -100159714660,
+        "foreign": -81582101452,
+        "trust": 9492200518,
+        "dealer": -27377364607,
+        "total": -99467265541,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261022",
-        "collectedAt": "2026-10-22T11:44:41.566Z"
+        "collectedAt": "2026-10-22T14:00:11.484Z"
       },
       "futures": {
         "date": "2026-10-22",
@@ -43,7 +43,7 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F10%2F22&commodityId=TXF",
-        "collectedAt": "2026-10-22T11:44:41.566Z"
+        "collectedAt": "2026-10-22T14:00:11.484Z"
       },
       "quote": {
         "date": "2026-10-22",
@@ -51,13 +51,12 @@
         "close": 46272,
         "change": -741,
         "changePct": -1.58,
-        "status": "stale",
+        "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F22&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-10-22T10:38:08.408Z",
-        "error": "The operation was aborted due to timeout"
+        "collectedAt": "2026-10-22T14:00:11.484Z"
       },
-      "complete": false,
-      "message": "部分官方資料尚未公布，已標示待公布或保留舊資料。"
+      "complete": true,
+      "message": "已重新取得完整盤後資料。"
     },
     {
       "date": "2026-10-21",
