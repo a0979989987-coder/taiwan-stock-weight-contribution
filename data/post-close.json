@@ -1,6 +1,65 @@
 {
   "reports": [
     {
+      "date": "2026-10-22",
+      "collectedAt": "2026-10-22T10:34:54.424Z",
+      "checkedAt": "2026-10-22T10:34:54.424Z",
+      "cash": {
+        "date": "2026-10-22",
+        "close": 46041.43,
+        "change": -846.34,
+        "turnover": 933437473560,
+        "changePct": -1.8050335940480857,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261022",
+        "collectedAt": "2026-10-22T10:34:54.424Z"
+      },
+      "institutions": {
+        "date": "2026-10-22",
+        "foreign": -81656527790,
+        "trust": 8874898142,
+        "dealer": -27378085012,
+        "total": -100159714660,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261022",
+        "collectedAt": "2026-10-22T10:34:54.424Z"
+      },
+      "futures": {
+        "date": "2026-10-22",
+        "product": "TX",
+        "rows": {
+          "dealer": {
+            "tradingNet": 1565,
+            "openInterestNet": 3260
+          },
+          "trust": {
+            "tradingNet": -177,
+            "openInterestNet": 83601
+          },
+          "foreign": {
+            "tradingNet": -1221,
+            "openInterestNet": -87297
+          }
+        },
+        "status": "ok",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F10%2F22&commodityId=TXF",
+        "collectedAt": "2026-10-22T10:34:54.424Z"
+      },
+      "quote": {
+        "date": "2026-10-21",
+        "contract": "202610",
+        "close": 46648,
+        "change": 307,
+        "changePct": 0.66,
+        "status": "stale",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F10%2F21&marketCode=0&commodity_id=TX",
+        "collectedAt": "2026-10-21T14:01:51.266Z",
+        "error": "The operation was aborted due to timeout"
+      },
+      "complete": false,
+      "message": "部分官方資料尚未公布，已標示待公布或保留舊資料。"
+    },
+    {
       "date": "2026-10-21",
       "collectedAt": "2026-10-21T14:01:51.266Z",
       "checkedAt": "2026-10-21T14:01:51.266Z",
