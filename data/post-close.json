@@ -2,8 +2,8 @@
   "reports": [
     {
       "date": "2026-11-10",
-      "collectedAt": "2026-11-10T13:45:22.971Z",
-      "checkedAt": "2026-11-10T13:45:22.971Z",
+      "collectedAt": "2026-11-10T14:47:45.181Z",
+      "checkedAt": "2026-11-10T14:47:45.181Z",
       "cash": {
         "date": "2026-11-10",
         "close": 42711.92,
@@ -12,7 +12,7 @@
         "changePct": 2.5208284827551446,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261110",
-        "collectedAt": "2026-11-10T13:45:22.971Z"
+        "collectedAt": "2026-11-10T14:47:45.181Z"
       },
       "institutions": {
         "date": "2026-11-10",
@@ -22,7 +22,7 @@
         "total": -11761616175,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261110",
-        "collectedAt": "2026-11-10T13:45:22.971Z"
+        "collectedAt": "2026-11-10T14:47:45.181Z"
       },
       "quote": {
         "date": "2026-11-10",
@@ -32,7 +32,7 @@
         "changePct": 2.76,
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F11%2F10&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-11-10T13:45:22.971Z"
+        "collectedAt": "2026-11-10T14:47:45.181Z"
       },
       "futures": {
         "date": "2026-11-10",
@@ -53,7 +53,7 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F11%2F10&commodityId=TXF",
-        "collectedAt": "2026-11-10T13:45:22.971Z"
+        "collectedAt": "2026-11-10T14:47:45.181Z"
       },
       "complete": true,
       "message": "已重新取得完整盤後資料。"
