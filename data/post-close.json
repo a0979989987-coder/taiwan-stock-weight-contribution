@@ -1,6 +1,66 @@
 {
   "reports": [
     {
+      "date": "2026-11-13",
+      "collectedAt": "2026-11-13T13:23:25.742Z",
+      "checkedAt": "2026-11-13T13:23:25.742Z",
+      "cash": {
+        "date": "2026-11-13",
+        "close": 43675.12,
+        "change": 583.25,
+        "turnover": 951580008082,
+        "changePct": 1.3535035727156886,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261113",
+        "collectedAt": "2026-11-13T13:23:25.742Z"
+      },
+      "quote": {
+        "date": "2026-11-12",
+        "contract": "202611",
+        "close": 43178,
+        "change": -958,
+        "changePct": -2.17,
+        "status": "stale",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F11%2F12&marketCode=0&commodity_id=TX",
+        "collectedAt": "2026-11-12T15:04:33.825Z",
+        "error": "官方資料來源回應 403"
+      },
+      "futures": {
+        "date": "2026-11-12",
+        "product": "TX",
+        "rows": {
+          "dealer": {
+            "tradingNet": -214,
+            "openInterestNet": -187
+          },
+          "trust": {
+            "tradingNet": -2969,
+            "openInterestNet": 98901
+          },
+          "foreign": {
+            "tradingNet": 4733,
+            "openInterestNet": -99573
+          }
+        },
+        "status": "stale",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F11%2F12&commodityId=TXF",
+        "collectedAt": "2026-11-12T15:04:33.825Z",
+        "error": "官方資料來源回應 403"
+      },
+      "institutions": {
+        "date": "2026-11-13",
+        "foreign": 28836686051,
+        "trust": 9539169401,
+        "dealer": 6892477045,
+        "total": 45268332497,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261113",
+        "collectedAt": "2026-11-13T13:23:25.742Z"
+      },
+      "complete": false,
+      "message": "部分官方資料尚未公布，已標示待公布或保留舊資料。"
+    },
+    {
       "date": "2026-11-12",
       "collectedAt": "2026-11-12T15:04:33.825Z",
       "checkedAt": "2026-11-12T16:59:04.897Z",

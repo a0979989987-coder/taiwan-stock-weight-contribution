@@ -10,8 +10,10 @@
   "tradeDate": "2026-11-12",
   "sessionStart": "2026-11-11T15:00:00+08:00",
   "sessionEnd": "2026-11-12T05:00:00+08:00",
-  "status": "ok",
+  "status": "stale",
   "source": "臺灣期貨交易所",
   "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F11%2F12&marketCode=1&commodity_id=TX",
-  "collectedAt": "2026-11-12T21:57:16.479757+08:00"
+  "collectedAt": "2026-11-12T21:57:16.479757+08:00",
+  "error": "HTTP Error 403: Forbidden",
+  "checkedAt": "2026-11-13T21:23:28.516976+08:00"
 }
