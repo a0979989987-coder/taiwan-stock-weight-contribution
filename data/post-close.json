@@ -1,6 +1,64 @@
 {
   "reports": [
     {
+      "date": "2026-11-17",
+      "collectedAt": "2026-11-17T14:50:36.123Z",
+      "checkedAt": "2026-11-17T14:50:36.123Z",
+      "cash": {
+        "date": "2026-11-17",
+        "close": 40092.11,
+        "change": -947.97,
+        "turnover": 1012867829864,
+        "changePct": -2.3098639183939214,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261117",
+        "collectedAt": "2026-11-17T14:50:36.123Z"
+      },
+      "institutions": {
+        "date": "2026-11-17",
+        "foreign": -38093637437,
+        "trust": -3820722349,
+        "dealer": -15696229125,
+        "total": -57610588911,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261117",
+        "collectedAt": "2026-11-17T14:50:36.123Z"
+      },
+      "futures": {
+        "date": "2026-11-17",
+        "product": "TX",
+        "rows": {
+          "dealer": {
+            "tradingNet": -1820,
+            "openInterestNet": -436
+          },
+          "trust": {
+            "tradingNet": -1180,
+            "openInterestNet": 91226
+          },
+          "foreign": {
+            "tradingNet": -1144,
+            "openInterestNet": -97896
+          }
+        },
+        "status": "ok",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F11%2F17&commodityId=TXF",
+        "collectedAt": "2026-11-17T14:50:36.123Z"
+      },
+      "quote": {
+        "date": "2026-11-17",
+        "contract": "202611",
+        "close": 40073,
+        "change": -708,
+        "changePct": -1.74,
+        "status": "ok",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F11%2F17&marketCode=0&commodity_id=TX",
+        "collectedAt": "2026-11-17T14:50:36.123Z"
+      },
+      "complete": true,
+      "message": "已重新取得完整盤後資料。"
+    },
+    {
       "date": "2026-11-16",
       "collectedAt": "2026-11-16T15:36:10.408Z",
       "checkedAt": "2026-11-16T18:47:13.336Z",
