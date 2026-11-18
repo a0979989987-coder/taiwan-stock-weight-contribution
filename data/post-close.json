@@ -1,6 +1,65 @@
 {
   "reports": [
     {
+      "date": "2026-11-18",
+      "collectedAt": "2026-11-18T14:29:42.414Z",
+      "checkedAt": "2026-11-18T14:29:42.414Z",
+      "cash": {
+        "date": "2026-11-18",
+        "close": 40194.91,
+        "change": 102.8,
+        "turnover": 1075174308798,
+        "changePct": 0.2564095529020548,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261118",
+        "collectedAt": "2026-11-18T14:29:42.414Z"
+      },
+      "institutions": {
+        "date": "2026-11-18",
+        "foreign": -76563675949,
+        "trust": 16611584089,
+        "dealer": -4201270082,
+        "total": -64153361942,
+        "status": "ok",
+        "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261118",
+        "collectedAt": "2026-11-18T14:29:42.414Z"
+      },
+      "quote": {
+        "date": "2026-11-18",
+        "contract": "202611",
+        "close": 40025,
+        "change": 14,
+        "changePct": 0.03,
+        "status": "ok",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F11%2F18&marketCode=0&commodity_id=TX",
+        "collectedAt": "2026-11-18T14:29:42.414Z"
+      },
+      "futures": {
+        "date": "2026-11-17",
+        "product": "TX",
+        "rows": {
+          "dealer": {
+            "tradingNet": -1820,
+            "openInterestNet": -436
+          },
+          "trust": {
+            "tradingNet": -1180,
+            "openInterestNet": 91226
+          },
+          "foreign": {
+            "tradingNet": -1144,
+            "openInterestNet": -97896
+          }
+        },
+        "status": "stale",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F11%2F17&commodityId=TXF",
+        "collectedAt": "2026-11-17T15:54:40.789Z",
+        "error": "The operation was aborted due to timeout"
+      },
+      "complete": false,
+      "message": "部分官方資料尚未公布，已標示待公布或保留舊資料。"
+    },
+    {
       "date": "2026-11-17",
       "collectedAt": "2026-11-17T15:54:40.789Z",
       "checkedAt": "2026-11-17T17:46:09.719Z",
