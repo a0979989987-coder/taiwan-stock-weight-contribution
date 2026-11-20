@@ -2,8 +2,8 @@
   "reports": [
     {
       "date": "2026-11-20",
-      "collectedAt": "2026-11-20T14:21:09.581Z",
-      "checkedAt": "2026-11-20T14:21:09.581Z",
+      "collectedAt": "2026-11-20T15:21:18.035Z",
+      "checkedAt": "2026-11-20T15:21:18.035Z",
       "cash": {
         "date": "2026-11-20",
         "close": 36033.29,
@@ -12,7 +12,7 @@
         "changePct": -6.228971431203513,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261120",
-        "collectedAt": "2026-11-20T14:21:09.581Z"
+        "collectedAt": "2026-11-20T15:21:18.035Z"
       },
       "institutions": {
         "date": "2026-11-20",
@@ -22,17 +22,7 @@
         "total": -50940775695,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261120",
-        "collectedAt": "2026-11-20T14:21:09.581Z"
-      },
-      "quote": {
-        "date": "2026-11-20",
-        "contract": "202612",
-        "close": 35875,
-        "change": -2732,
-        "changePct": -7.08,
-        "status": "ok",
-        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F11%2F20&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-11-20T14:21:09.581Z"
+        "collectedAt": "2026-11-20T15:21:18.035Z"
       },
       "futures": {
         "date": "2026-11-20",
@@ -53,7 +43,17 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F11%2F20&commodityId=TXF",
-        "collectedAt": "2026-11-20T14:21:09.581Z"
+        "collectedAt": "2026-11-20T15:21:18.035Z"
+      },
+      "quote": {
+        "date": "2026-11-20",
+        "contract": "202612",
+        "close": 35875,
+        "change": -2732,
+        "changePct": -7.08,
+        "status": "ok",
+        "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F11%2F20&marketCode=0&commodity_id=TX",
+        "collectedAt": "2026-11-20T15:21:18.035Z"
       },
       "complete": true,
       "message": "已重新取得完整盤後資料。"
