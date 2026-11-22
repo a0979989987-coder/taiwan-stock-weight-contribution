@@ -2,8 +2,8 @@
   "reports": [
     {
       "date": "2026-11-20",
-      "collectedAt": "2026-11-21T13:40:19.099Z",
-      "checkedAt": "2026-11-21T13:40:19.099Z",
+      "collectedAt": "2026-11-22T13:33:33.644Z",
+      "checkedAt": "2026-11-22T13:33:33.644Z",
       "cash": {
         "date": "2026-11-20",
         "close": 36033.29,
@@ -11,8 +11,8 @@
         "turnover": 935310420150,
         "changePct": -6.228971431203513,
         "status": "ok",
-        "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261121",
-        "collectedAt": "2026-11-21T13:40:19.099Z"
+        "sourceUrl": "https://www.twse.com.tw/exchangeReport/FMTQIK?response=json&date=20261122",
+        "collectedAt": "2026-11-22T13:33:33.644Z"
       },
       "institutions": {
         "date": "2026-11-20",
@@ -22,7 +22,7 @@
         "total": -50940775695,
         "status": "ok",
         "sourceUrl": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?response=json&type=day&dayDate=20261120",
-        "collectedAt": "2026-11-21T13:40:19.099Z"
+        "collectedAt": "2026-11-22T13:33:33.644Z"
       },
       "futures": {
         "date": "2026-11-20",
@@ -43,7 +43,7 @@
         },
         "status": "ok",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futContractsDate?queryDate=2026%2F11%2F20&commodityId=TXF",
-        "collectedAt": "2026-11-21T13:40:19.099Z"
+        "collectedAt": "2026-11-22T13:33:33.644Z"
       },
       "quote": {
         "date": "2026-11-20",
@@ -51,11 +51,12 @@
         "close": 35875,
         "change": -2732,
         "changePct": -7.08,
-        "status": "ok",
+        "status": "stale",
         "sourceUrl": "https://www.taifex.com.tw/cht/3/futDailyMarketReport?queryDate=2026%2F11%2F20&marketCode=0&commodity_id=TX",
-        "collectedAt": "2026-11-21T13:40:19.099Z"
+        "collectedAt": "2026-11-21T13:40:19.099Z",
+        "error": "The operation was aborted due to timeout"
       },
-      "complete": true,
+      "complete": false,
       "message": "今日尚無完整收盤資料，顯示最近交易日。"
     },
     {
