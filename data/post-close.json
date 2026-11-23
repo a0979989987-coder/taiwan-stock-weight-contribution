@@ -3,7 +3,7 @@
     {
       "date": "2026-11-20",
       "collectedAt": "2026-11-22T13:33:33.644Z",
-      "checkedAt": "2026-11-22T13:33:33.644Z",
+      "checkedAt": "2026-11-23T16:24:37.026Z",
       "cash": {
         "date": "2026-11-20",
         "close": 36033.29,
@@ -57,7 +57,7 @@
         "error": "The operation was aborted due to timeout"
       },
       "complete": false,
-      "message": "今日尚無完整收盤資料，顯示最近交易日。"
+      "message": "台北時間 13:30 後才抓取盤後資料，保留最近結果。"
     },
     {
       "date": "2026-11-19",
